@@ -20,7 +20,7 @@ int main() {
 			if (flag) { //괄호 바로 닫힐때는 남은 stack size만큼		
 				cnt += st.size();
 			}
-			else { //아니면 막대기 끝이므로 +1
+			else { //아니면 특정 막대기 끝이므로 +1
 				cnt++;
 			}
 			flag = false;

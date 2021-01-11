@@ -18,7 +18,7 @@ int main() {
 			if (n > s.top().second) { //현재 값보다 스택의 top이 낮으면, 스택의 top제거. 더이상 수신탑 될수 없기 때문. 
 				s.pop();
 			}
-			else { //현재 값보다 스택의 top이 높으면(수신탑 발견), 스택의 top출력 후 종료
+			else { //현재 값보다 스택의 top이 높으면(수신탑 발견), 스택의 top 위치출력 후 종료
 				cout << s.top().first << " ";
 				break;
 			}
@@ -28,7 +28,7 @@ int main() {
 			cout << "0" << " ";
 		}
 
-		s.push(make_pair(i, n)); //현재 높이 스택에 추가.
+		s.push(make_pair(i, n)); //현재 (위치,높이) 스택에 추가.
 	}
 }
 
