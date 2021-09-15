@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
 using namespace std;
+
+int V, E;
+int A, B, C;
 
 int getParent(int parent[], int x) {
 	if (parent[x] == x) return x;
@@ -12,19 +14,15 @@ int getParent(int parent[], int x) {
 void unionParent(int parent[], int a, int b) {
 	a = getParent(parent, a);
 	b = getParent(parent, b);
-	if (a < b)
-		parent[b] = a;
-	else
-		parent[a] = b;
+	if (a < b) parent[b] = a;
+	else parent[a] = b;
 }
 
 int findParent(int parent[], int a, int b) {
 	a = getParent(parent, a);
 	b = getParent(parent, b);
-	if (a == b)
-		return 1;
-	else
-		return 0;
+	if (a == b) return 1;
+	else return 0;
 }
 
 class Edge {
@@ -36,36 +34,31 @@ public:
 		this->node[1] = b;
 		this->distance = distance;
 	}
-	bool operator <(Edge& edge) {
+	bool operator<(Edge& edge) {
 		return this->distance < edge.distance;
 	}
 };
 
 int main() {
-	int n, m; //정점 간선
-	cin >> n >> m;
-
-	int a, b, distance;
+	cin >> V >> E;
 	vector<Edge> v;
-	for (int i = 0; i < m; i++) {
-		cin >> a >> b >> distance;
-		v.push_back(Edge(a, b, distance));
-	}
-
-	sort(v.begin(), v.end());
-
 	int parent[10000];
-	for (int i = 0; i < n; i++) {
+
+	for (int i = 0; i < E; i++) {
+		cin >> A >> B >> C;
+		v.push_back({ A,B,C });
+	}
+	sort(v.begin(), v.end());
+	for (int i = 0; i < V; i++) {
 		parent[i] = i;
 	}
-	vector<Edge> c;
 	int sum = 0;
-	for (int i = 0; i < v.size(); i++) {
-		if (!findParent(parent, v[i].node[0] - 1, v[i].node[1] - 1)) {
+
+	for (int i = 0; i < v.size(); i++){
+		if (!findParent(parent, v[i].node[0]-1, v[i].node[1]-1)) {
 			sum += v[i].distance;
-			c.push_back(Edge(a, b, distance));
-			unionParent(parent, v[i].node[0] - 1, v[i].node[1] - 1);
+			unionParent(parent, v[i].node[0]-1, v[i].node[1]-1);
 		}
 	}
-	cout << sum;
+	cout << sum << endl;
 }
