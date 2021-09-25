@@ -24,10 +24,6 @@ int main() {
 				while (true) {
 					if (cur >= s.size() || s[cur] == '0') break; //범위 벗어나거나 2번쨰 패턴 시작
 					if (cur + 2 < s.size() && s.substr(cur, 3) == "100") break; //100이면 1번째 패턴 시작
-					else if (cur + 2 < s.size() && s.substr(cur, 3) == "101") { //101이면 0부터 2번쨰패턴 시작
-						cur++;
-						break;
-					}
 					cur++; //1로시작하지만 101,100패턴이 아닌경우
 				}
 			}
